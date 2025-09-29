@@ -1,0 +1,17 @@
+services:
+  timeapi:
+    image: ${DOCKER_REGISTRY-}timeapi
+    build:
+      context: .
+      dockerfile: TimeApi/Dockerfile
+
+  database:
+    image: postgres:latest
+    environment:
+        - POSTGRES_DB=timeDb
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=postgres
+    volumes:
+        - ./.containers/db:/var/lib/postgresql/data
+    ports:
+        - "5432:5432"

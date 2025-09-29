@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: timeapi
+spec:
+  selector:
+    matchLabels:
+      app: timeapi
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: timeapi
+    spec:
+      containers:
+      - name: timeapi
+        image: michalwochna/timeapi
+        ports:
+        - containerPort: 8080
